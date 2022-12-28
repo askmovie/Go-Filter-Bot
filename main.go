@@ -88,6 +88,13 @@ func main() {
 		panic("failed to start polling: " + err.Error())
 	}
 	fmt.Printf("@%s Started !\n", b.User.Username)
+	
+	//To make sure no other instance of the bot is running python code
+		_, err = b.GetUpdates(&gotgbot.GetUpdatesOpts{})
+	if err != nil {
+		fmt.Println("Exiting because : " + err.Error())
+		return
+	}
 
 	// Idle, to keep updates coming in, and avoid bot stopping.
 	updater.Idle()
