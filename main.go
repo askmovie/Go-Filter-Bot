@@ -44,13 +44,6 @@ func main() {
 		panic("failed to create new bot: " + err.Error())
 	}
 
-	//To make sure no other instance of the bot is running
-	_, err = b.GetUpdates(&gotgbot.GetUpdatesOpts{})
-	if err != nil {
-		fmt.Println("Exiting because : " + err.Error())
-		return
-	}
-
 	// Create updater and dispatcher.
 	updater := ext.NewUpdater(&ext.UpdaterOpts{
 		ErrorLog: nil,
